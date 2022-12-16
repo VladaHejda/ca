@@ -36,7 +36,7 @@ if (isset($_GET['state']) && $_GET['state'] !== '' && preg_match('/^[01]+$/', $_
 
 ?>
 <form method="get" action="">
-	<label>Rule: <input type="number" style="width: 4em" name="rule" value="<?php echo htmlspecialchars($_GET['rule'] ?? ''); ?>"></label>
+	<label>Rule: <input type="number" style="width: 4em" name="rule" value="<?php echo htmlspecialchars($_GET['rule'] ?? ''); ?>" placeholder="rand"></label>
 	<label>Columns: <input type="number" style="width: 4em" name="columns" value="<?php echo htmlspecialchars($_GET['columns'] ?? ''); ?>"></label>
 	<label>Rows: <input type="number" style="width: 5em" name="rows" value="<?php echo htmlspecialchars($_GET['rows'] ?? ''); ?>"></label>
 	<label>Initial state: <input type="text" name="state" value="<?php echo htmlspecialchars($_GET['state'] ?? ''); ?>" size="20" placeholder="rand"></label>
