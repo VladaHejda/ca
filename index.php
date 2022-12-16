@@ -46,9 +46,10 @@ if (isset($_GET['state']) && $_GET['state'] !== '' && preg_match('/^[01]+$/', $_
 <?php
 
 echo "Rule $rule<br>\n";
-echo "$state<br>\n";
 
 ?><div class="grid"><?php
+
+echo "$state<br>\n";
 
 $ruleBin = str_pad(decbin($rule), 8, '0', STR_PAD_LEFT);
 $options = ['111', '110', '101', '100', '011', '010', '001', '000'];
