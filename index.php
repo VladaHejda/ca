@@ -34,6 +34,10 @@ if (isset($_GET['state']) && $_GET['state'] !== '' && preg_match('/^[01]+$/', $_
 	}
 }
 
+$fluctuatePercent = isset($_GET['fluctuate']) && $_GET['fluctuate'] !== '' && ctype_digit($_GET['fluctuate'])
+	? min($_GET['fluctuate'], 100)
+	: 0;
+
 ?>
 <form method="get" action="">
 	<label>Rule: <input type="number" style="width: 4em" name="rule" value="<?php echo htmlspecialchars($_GET['rule'] ?? ''); ?>" placeholder="rand"></label>
@@ -57,6 +61,15 @@ $options = ['111', '110', '101', '100', '011', '010', '001', '000'];
 do {
 	$output = str_replace(['1', '0'], ['█', '░'], $state);
 	echo "$output<br>\n";
+
+	if ($fluctuatePercent > 0) {
+		for ($i = 0; $i < $columns; $i++) {
+			$shouldFluctuate = $fluctuatePercent === 100 || random_int(0, 100 - $fluctuatePercent) === 0;
+			if ($shouldFluctuate && random_int(0, 1) === 1) {
+				$state[$i] = $state[$i] === '1' ? '0' : '1';
+			}
+		}
+	}
 
 	$newState = '';
 	for ($i = 0; $i < $columns; $i++) {
